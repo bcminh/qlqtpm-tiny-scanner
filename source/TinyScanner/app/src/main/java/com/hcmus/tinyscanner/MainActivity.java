@@ -1,8 +1,6 @@
 package com.hcmus.tinyscanner;
 
 import android.os.Bundle;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.TextView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,14 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    GridView gridViewDoc;
-    ArrayList<document> mangDoc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,44 +26,13 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-
         });
-        anhxa();
-        settingAdapter();
+
     // Example of a call to a native method
-//    TextView tv = (TextView) findViewById(R.id.sample_text);
-//    tv.setText(stringFromJNI());
+    TextView tv = (TextView) findViewById(R.id.sample_text);
+    tv.setText(stringFromJNI());
     }
 
-    private void anhxa()
-    {
-        gridViewDoc = (GridView) findViewById(R.id.GridVMain);
-        mangDoc = new ArrayList<document>();
-    }
-    private void settingAdapter()
-    {
-        mangDoc.add(new document("Mon an 1",R.drawable.monan1, true));
-        mangDoc.add(new document("Mon an 2",R.drawable.monan2, false));
-        mangDoc.add(new document("Mon an 3",R.drawable.monan3,false));
-        mangDoc.add(new document("Mon an 4",R.drawable.monan4,false));
-        mangDoc.add(new document("Mon an 5",R.drawable.monan5,true));
-        mangDoc.add(new document("Mon an 1",R.drawable.monan1, false));
-        mangDoc.add(new document("Mon an 2",R.drawable.monan2, true));
-        mangDoc.add(new document("Mon an 3",R.drawable.monan3, true));
-        mangDoc.add(new document("Mon an 4",R.drawable.monan4,false));
-        mangDoc.add(new document("Mon an 5",R.drawable.monan5,false));
-
-        listAdapter adapter = new listAdapter(MainActivity.this,R.layout.dong_document,mangDoc);
-        gridViewDoc.setAdapter(adapter);
-
-
-        gridViewDoc.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, mangDoc.get(position).getCheck()+"", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
