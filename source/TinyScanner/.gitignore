@@ -7,3 +7,5 @@
 /build
 /captures
 .externalNativeBuild
+/tinyscannerlib/build
+/openCVLibrary310/build
