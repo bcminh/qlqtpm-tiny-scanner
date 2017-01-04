@@ -16,9 +16,6 @@ init:
 
   - 7z x android-sdk_r24.4.1-windows.zip > nul
 
-  - cd C:\projects\tiny-scanner-app\source\TinyScanner
-
-
 
 install:
 
@@ -34,7 +31,8 @@ install:
 
   - echo y | "%ANDROID_HOME%\tools\android.bat" update sdk -u -a -t extra-android-m2repository
 
-
+before_build:
+  - cd C:\projects\tiny-scanner-app\source\TinyScanner
 
 build_script:
 
