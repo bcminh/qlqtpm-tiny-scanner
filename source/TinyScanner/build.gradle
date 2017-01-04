@@ -3,6 +3,10 @@
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
+        maven {
+            url "https://mvnrepository.com/artifact/com.itextpdf/itextpdf"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.2'
