@@ -10,14 +10,13 @@ clone_folder: "C:\\projects\\tiny-scanner-app"
 
 init:
 
-  - (if exist C:\projects\tiny-scanner-app rmdir /s/q C:\projects\tiny-scanner-app\) & mkdir C:\projects\tiny-scanner-app
-  
-  - cd "C:\projects\tiny-scanner-app"
-
   - appveyor DownloadFile http://dl.google.com/android/android-sdk_r24.4.1-windows.zip
 
   - 7z x android-sdk_r24.4.1-windows.zip > nul
 
+clone_script:
+  - cmd: git clone -q --recursive --branch=%APPVEYOR_REPO_BRANCH% https://github.com/%APPVEYOR_REPO_NAME%.git %APPVEYOR_BUILD_FOLDER%
+  - cmd: git checkout -qf %APPVEYOR_REPO_COMMIT%
 
 install:
 
