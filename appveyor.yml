@@ -4,13 +4,11 @@ environment:
 
   JAVA_HOME: "C:\\Program Files\\Java\\jdk1.8.0"
 
-
-clone_folder: "C:\\projects\\tiny-scanner-app"
-
-
 init:
 
-  - cd \
+  - mkdir C:\projects\tiny-scanner-app
+  
+  - cd "C:\projects\tiny-scanner-app"
 
   - appveyor DownloadFile http://dl.google.com/android/android-sdk_r24.4.1-windows.zip
 
@@ -32,7 +30,7 @@ install:
   - echo y | "%ANDROID_HOME%\tools\android.bat" update sdk -u -a -t extra-android-m2repository
 
 before_build:
-  - cd C:\projects\tiny-scanner-app\source\TinyScanner
+  - cd "C:\projects\tiny-scanner-app\source\TinyScanner"
 
 build_script:
 
