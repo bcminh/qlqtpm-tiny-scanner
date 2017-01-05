@@ -20,6 +20,7 @@ clone_script:
   - cmd: git checkout -qf %APPVEYOR_REPO_COMMIT%
 
 install:
+  - dir %ANDROID_HOME%
 
   - echo y | "%ANDROID_HOME%\tools\android.bat" update sdk -u -a -t tools
 
