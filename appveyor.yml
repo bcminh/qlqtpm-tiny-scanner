@@ -10,7 +10,7 @@ clone_folder: "C:\\projects\\tiny-scanner-app"
 
 init:
 
-  - if not exist "C:\projects\tiny-scanner-app" mkdir C:\projects\tiny-scanner-app
+  - (if exist "C:\projects\tiny-scanner-app" (rmdir /s/q "C:\projects\tiny-scanner-app\")) & mkdir C:\projects\tiny-scanner-app
   
   - cd "C:\projects\tiny-scanner-app"
 
