@@ -18,6 +18,7 @@ init:
 clone_script:
   - cmd: if exist %APPVEYOR_BUILD_FOLDER% rmdir %APPVEYOR_BUILD_FOLDER% /s /q
   - cmd: git clone -q --recursive --branch=%APPVEYOR_REPO_BRANCH% https://github.com/%APPVEYOR_REPO_NAME%.git %APPVEYOR_BUILD_FOLDER%
+  - cmd: cd %APPVEYOR_BUILD_FOLDER%
   - cmd: git checkout -qf %APPVEYOR_REPO_COMMIT%
 
 install:
