@@ -15,6 +15,7 @@ init:
   - 7z x android-sdk_r24.4.1-windows.zip > nul
 
 clone_script:
+  - cmd: if exist %APPVEYOR_BUILD_FOLDER% rmdir %APPVEYOR_BUILD_FOLDER% /s /q
   - cmd: git clone -q --recursive --branch=%APPVEYOR_REPO_BRANCH% https://github.com/%APPVEYOR_REPO_NAME%.git %APPVEYOR_BUILD_FOLDER%
   - cmd: git checkout -qf %APPVEYOR_REPO_COMMIT%
 
