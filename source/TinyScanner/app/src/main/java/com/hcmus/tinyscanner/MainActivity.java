@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -18,14 +19,17 @@ import com.hcmus.tinyscanner.lib.utils.ImageUtil;
 
 import org.opencv.android.OpenCVLoader;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final int CAMERA_REQUEST = 1888;
     private ImageView imageView;
+    private Bitmap photo;
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            photo = (Bitmap) data.getExtras().get("data");
             imageView.setImageBitmap(FileUtil.Review(photo));
         }
     }
@@ -52,9 +56,20 @@ public class MainActivity extends AppCompatActivity {
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
-                if(bitmap!=null)
-                    imageView.setImageBitmap(ImageUtil.rotateBitmap(bitmap,90));
+                if(photo!=null)
+                    imageView.setImageBitmap(ImageUtil.rotateBitmap(photo,90));
+            }
+        });
+
+        FloatingActionButton fab3 = (FloatingActionButton) findViewById(R.id.fab3);
+        fab3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(photo!=null)
+                {
+                    File dir = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+                    FileUtil.exportPDF(dir.getAbsolutePath(),photo);
+                }
             }
         });
 

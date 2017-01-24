@@ -9,6 +9,7 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -94,4 +95,23 @@ public class FileUtil {
             e.printStackTrace();
         }
     }
+
+    public static void exportPDF(String dirName, Bitmap bm)  {
+        Document document=new Document();
+        try {
+            PdfWriter.getInstance(document,new FileOutputStream(new File(dirName+"/"+"YourPDFHere.pdf")));
+
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bm.compress(Bitmap.CompressFormat.JPEG, 100 , stream);
+            Image myImg = Image.getInstance(stream.toByteArray());
+            myImg.setAlignment(Image.MIDDLE);
+
+            document.open();
+            document.add(myImg);
+            document.close();
+        } catch (DocumentException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
