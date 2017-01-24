@@ -15,6 +15,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
+import com.hcmus.tinyscanner.lib.utils.ImageUtil;
+
+import org.opencv.core.Mat;
 
 /**
  * Created by danny on 1/2/2017.
@@ -33,6 +36,10 @@ public class FileUtil {
         return mediaStorageDir.getAbsolutePath();
     }
 
+    public static Bitmap Review(Bitmap bitmap) {
+        return ImageUtil.Review(bitmap);
+    }
+
     public static String savePage(String dirDoc, int idPage, Bitmap imageBitmap) {
         String pageName = idPage + "_" + Calendar.getInstance().getTimeInMillis() + ".png";
         String pagePath = new File(dirDoc, pageName).getAbsolutePath();
@@ -44,7 +51,8 @@ public class FileUtil {
             pagePath = null;
         } finally {
             try {
-                if (out != null) {
+                if (out != null)
+                {
                     out.close();
                 }
             } catch (IOException e) {

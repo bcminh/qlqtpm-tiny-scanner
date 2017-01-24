@@ -1,5 +1,7 @@
 package com.hcmus.tinyscanner.lib.services;
 
+import org.opencv.android.OpenCVLoader;
+
 /**
  * Created by danny on 1/2/2017.
  */
